@@ -12,6 +12,8 @@ import java.sql.*;
 public class ADD_items extends javax.swing.JFrame {
 int id;
 
+// iaojfsdiofjdiofiodspaduifhfuidhaidsfhiusdafhisdfousdhaiufhsdiuah
+
     public ADD_items() {
         initComponents();
         setLocationRelativeTo(null);
