@@ -22,7 +22,7 @@ public class Home extends javax.swing.JFrame {
         this.userid=user;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql;
             sql = "select * from shop where shopid="+userid+";";
             Statement st=con.createStatement();

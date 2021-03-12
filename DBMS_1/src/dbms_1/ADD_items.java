@@ -237,7 +237,7 @@ int id;
        {
        try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql;
             if(jRadioButton1.isSelected())
             {

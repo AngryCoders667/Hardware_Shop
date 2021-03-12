@@ -17,7 +17,7 @@ int id;
         id=x;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql,id,name,add,phone1,phone2,mail;
             sql = "select * from supplier;";
             Statement st=con.createStatement();

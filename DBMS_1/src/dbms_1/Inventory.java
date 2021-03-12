@@ -18,7 +18,7 @@ int id;
         jLabel1.setText("UserID: "+id);
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql;
             sql = "select * from hwstock where shopid="+id+";";
             Statement st=con.createStatement();

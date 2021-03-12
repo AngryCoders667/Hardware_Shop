@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
 
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             int sid;
             String pass,sql;
             if(jTextField1.getText().equals(""))

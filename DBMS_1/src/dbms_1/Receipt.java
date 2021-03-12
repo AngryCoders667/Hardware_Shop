@@ -42,7 +42,7 @@ String name,add,email,contact1,contact2,billdate;
         billdate=bdate;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","YES");
             String sql;
             sql = "select  hwstock.hid,hname,sp from hwlist,hwstock where hwstock.hid=hwlist.hid and shopid="+userid+";";
             Statement st=con.createStatement();
@@ -468,7 +468,7 @@ String name,add,email,contact1,contact2,billdate;
         {
             try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql,sql1;
             sql = " insert into customer(cust_name,cust_add,custphone1,custphone2,custemail,total,billdate,shopid) values('"+name+"','"+add+"','"+contact1+"','"+contact1+"','"+email+"',"+sum+",'"+billdate+"',"+userid+");";
             Statement st=con.createStatement();
