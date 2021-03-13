@@ -1,11 +1,13 @@
 
 
 package dbms_1;
+import dbms_1.SQL.BaseConnect;
+
 import java.sql.*;
 import javax.swing.*;
 
 public class Home extends javax.swing.JFrame {
-
+    Connection con = Login.con;
     int userid;
     /**
      * Creates new form Home
@@ -22,7 +24,6 @@ public class Home extends javax.swing.JFrame {
         this.userid=user;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             String sql;
             sql = "select * from shop where shopid="+userid+";";
             Statement st=con.createStatement();

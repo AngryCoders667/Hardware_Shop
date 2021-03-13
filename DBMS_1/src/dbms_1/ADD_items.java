@@ -2,15 +2,16 @@
 package dbms_1;
 
 import dbms_1.SQL.BaseConnect;
-import dbms_1.SQL.PostgreSQL;
+import dbms_1.SQL.MySQL;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.sql.*;
 
 
 public class ADD_items extends javax.swing.JFrame {
 int id;
-    BaseConnect database = new PostgreSQL();
+    BaseConnect con = new MySQL();
     public ADD_items() {
         initComponents();
         setLocationRelativeTo(null);
@@ -196,7 +197,7 @@ int id;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
        
        int hw=0,qty=(Integer)jSpinner1.getValue();
@@ -244,7 +245,7 @@ int id;
             {
                 sql = "update hwstock set quantity=quantity+"+qty+" where shopid="+id+" and hid="+hw+";";
 
-                database.updateSQL(sql);
+                con.updateSQL(sql);
 
                 JOptionPane.showMessageDialog(this,"Changes are made to the inventory");
                 Inventory i=new Inventory(id);
@@ -254,7 +255,7 @@ int id;
             else if(jRadioButton2.isSelected())
             {
                 sql = "select * from hwstock where shopid="+id+";";
-                ResultSet rs=database.selectSQL(sql);
+                ResultSet rs= con.selectSQL(sql);
                 rs.next();
                 int x=Integer.parseInt(rs.getString("quantity"));
                     if(x<qty)
@@ -265,7 +266,7 @@ int id;
                 {
                     sql = "update hwstock set quantity=quantity-"+qty+" where shopid="+id+" and hid="+hw+";";
 
-                    database.updateSQL(sql);
+                    con.updateSQL(sql);
 
                     JOptionPane.showMessageDialog(this,"Changes are made to the inventory");
                     Inventory i=new Inventory(id);

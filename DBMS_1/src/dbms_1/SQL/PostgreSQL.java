@@ -14,15 +14,15 @@ public class PostgreSQL implements BaseConnect {
 
 
     public PostgreSQL(){
-        connect(PostgreSQL.url, PostgreSQL.user, PostgreSQL.pass);
+        connect();
     }
 
 
     @Override
-    public void connect(String url, String user, String pass) {
+    public void connect() {
         try {
             con = DriverManager.getConnection(url, user, pass);
-            System.out.println("Connection Successful!");
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -75,5 +75,10 @@ public class PostgreSQL implements BaseConnect {
             throwables.printStackTrace();
 
         }
+    }
+
+    @Override
+    public Connection getConnection() {
+        return this.con;
     }
 }

@@ -1,13 +1,18 @@
 package dbms_1;
 
 
+import dbms_1.SQL.BaseConnect;
+import dbms_1.SQL.MySQL;
+import dbms_1.SQL.PostgreSQL;
+
 import java.sql.*;
 import javax.swing.*;
 import java.lang.NumberFormatException;
 
 public class Login extends javax.swing.JFrame {
+// My OOP Endterm Project
 
-
+    public static Connection con;
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
@@ -182,7 +187,10 @@ public class Login extends javax.swing.JFrame {
 
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+            BaseConnect mysql1 = new MySQL();
+            mysql1.connect();
+            con=mysql1.getConnection();
+            //con = new PostgreSQL().getConnection();
             int sid;
             String pass,sql;
             if(jTextField1.getText().equals(""))

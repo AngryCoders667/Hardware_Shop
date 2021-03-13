@@ -6,19 +6,24 @@ public class MySQL implements BaseConnect {
     static String url = "jdbc:mysql://localhost:3306/javaproject";
     static String user = "root";
     static String pass = "root";
-    private Connection con = null;
+    private Connection con;
     private ResultSet rs = null;
     private Statement stmt = null;
 
+    @Override
+    public Connection getConnection(){
+        return this.con;
+    }
+
     public MySQL(){
-        connect(PostgreSQL.url, PostgreSQL.user, PostgreSQL.pass);
+        connect();
     }
 
     @Override
-    public void connect(String url, String user, String pass) {
+    public void connect() {
         try {
             con = DriverManager.getConnection(url, user, pass);
-            System.out.println("Connection Successful!");
+
         } catch (Exception e) {
             System.out.println(e);
         }

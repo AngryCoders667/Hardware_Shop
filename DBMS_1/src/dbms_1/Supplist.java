@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Supplist extends javax.swing.JFrame {
 int id;
-
+    Connection con = Login.con;
     public Supplist() {
         initComponents();
         setLocationRelativeTo(null);
@@ -17,7 +17,6 @@ int id;
         id=x;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             String sql,id,name,add,phone1,phone2,mail;
             sql = "select * from supplier;";
             Statement st=con.createStatement();

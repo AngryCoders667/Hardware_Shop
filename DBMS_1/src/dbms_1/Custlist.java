@@ -1,5 +1,6 @@
 package dbms_1;
 import dbms_1.SQL.BaseConnect;
+import dbms_1.SQL.MySQL;
 import dbms_1.SQL.PostgreSQL;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ import javax.swing.*;
 public class Custlist extends javax.swing.JFrame {
 
     int userid;
-    BaseConnect database = new PostgreSQL();
+    BaseConnect database = new MySQL();
 
     public Custlist() {
         initComponents();
@@ -26,11 +27,6 @@ public class Custlist extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         userid=x;
         try{
-
-            Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
-
-
 
             String sql,id,name,add,phone1,phone2,mail,bill,bdate;
             sql = "select * from customer where shopid="+userid+";";

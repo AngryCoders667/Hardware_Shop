@@ -11,7 +11,7 @@ float amt[]=new float[8];
 float sum=0.0f;
 int userid;
 String name,add,email,contact1,contact2,billdate;
-            
+    Connection con = Login.con;
 
     public Receipt() {
         initComponents();
@@ -42,7 +42,6 @@ String name,add,email,contact1,contact2,billdate;
         billdate=bdate;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","YES");
             String sql;
             sql = "select  hwstock.hid,hname,sp from hwlist,hwstock where hwstock.hid=hwlist.hid and shopid="+userid+";";
             Statement st=con.createStatement();

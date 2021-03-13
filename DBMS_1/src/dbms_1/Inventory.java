@@ -1,11 +1,13 @@
 
 package dbms_1;
+import dbms_1.SQL.BaseConnect;
+
 import javax.swing.*;
 import java.sql.*;
 
 public class Inventory extends javax.swing.JFrame {
 int id;
-
+    Connection con = Login.con;
     public Inventory() {
         initComponents();
         setLocationRelativeTo(null);
@@ -18,7 +20,7 @@ int id;
         jLabel1.setText("UserID: "+id);
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
+
             String sql;
             sql = "select * from hwstock where shopid="+id+";";
             Statement st=con.createStatement();
