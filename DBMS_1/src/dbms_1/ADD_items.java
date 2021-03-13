@@ -1,13 +1,16 @@
 
 package dbms_1;
 
+import dbms_1.SQL.BaseConnect;
+import dbms_1.SQL.PostgreSQL;
+
 import javax.swing.*;
 import java.sql.*;
 
 
 public class ADD_items extends javax.swing.JFrame {
 int id;
-
+    BaseConnect database = new PostgreSQL();
     public ADD_items() {
         initComponents();
         setLocationRelativeTo(null);
@@ -236,39 +239,38 @@ int id;
        else
        {
        try{
-            Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
             String sql;
             if(jRadioButton1.isSelected())
             {
-            sql = "update hwstock set quantity=quantity+"+qty+" where shopid="+id+" and hid="+hw+";";
-            Statement st=con.createStatement();
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this,"Changes are made to the inventory");
-            Inventory i=new Inventory(id);
-            this.hide();
-            i.show();
-            }
-            else if(jRadioButton2.isSelected())
-            {
-            sql = "select * from hwstock where shopid="+id+";";
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery(sql);
-            rs.next();
-            int x=Integer.parseInt(rs.getString("quantity"));
-              if(x<qty)
-                {
-                JOptionPane.showMessageDialog(this,"There are not enough items to be removed from stock");
-                }
-              else
-                {
-                sql = "update hwstock set quantity=quantity-"+qty+" where shopid="+id+" and hid="+hw+";";
-                Statement st1=con.createStatement();
-                st1.executeUpdate(sql);
+                sql = "update hwstock set quantity=quantity+"+qty+" where shopid="+id+" and hid="+hw+";";
+
+                database.updateSQL(sql);
+
                 JOptionPane.showMessageDialog(this,"Changes are made to the inventory");
                 Inventory i=new Inventory(id);
                 this.hide();
                 i.show();
+            }
+            else if(jRadioButton2.isSelected())
+            {
+                sql = "select * from hwstock where shopid="+id+";";
+                ResultSet rs=database.selectSQL(sql);
+                rs.next();
+                int x=Integer.parseInt(rs.getString("quantity"));
+                    if(x<qty)
+                    {
+                        JOptionPane.showMessageDialog(this,"There are not enough items to be removed from stock");
+                    }
+                else
+                {
+                    sql = "update hwstock set quantity=quantity-"+qty+" where shopid="+id+" and hid="+hw+";";
+
+                    database.updateSQL(sql);
+
+                    JOptionPane.showMessageDialog(this,"Changes are made to the inventory");
+                    Inventory i=new Inventory(id);
+                    this.hide();
+                    i.show();
                 }
             }
         }
@@ -292,7 +294,7 @@ int id;
         }
         else if(confirm==JOptionPane.NO_OPTION)
         {
-         JOptionPane.showMessageDialog(this,"Click on Update Button to see the changes in inventory");
+            JOptionPane.showMessageDialog(this,"Click on Update Button to see the changes in inventory");
         }
         else
         {

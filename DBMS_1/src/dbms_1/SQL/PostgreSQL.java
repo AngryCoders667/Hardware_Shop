@@ -31,7 +31,7 @@ public class PostgreSQL implements BaseConnect {
     }
 
     @Override
-    public ResultSet selectSQL(String sql, String[] params) {
+    public ResultSet selectSQL(String sql) {
         try {
 
             stmt = con.createStatement();
@@ -47,7 +47,7 @@ public class PostgreSQL implements BaseConnect {
     }
 
     @Override
-    public int updateSQL(String sql, String[] params) {
+    public int updateSQL(String sql) {
 
         int rows = 0;
         try {
