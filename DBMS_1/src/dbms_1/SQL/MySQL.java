@@ -2,21 +2,17 @@ package dbms_1.SQL;
 
 import java.sql.*;
 
-public class PostgreSQL implements BaseConnect {
-
+public class MySQL implements BaseConnect {
+    static String url = "jdbc:mysql://localhost:3306/javaproject";
+    static String user = "root";
+    static String pass = "root";
     private Connection con = null;
     private ResultSet rs = null;
     private Statement stmt = null;
 
-    static String url = "jdbc:postgresql://localhost:5432/postgres";
-    static String user = "postgres";
-    static String pass = "123";
-
-
-    public PostgreSQL(){
+    public MySQL(){
         connect(PostgreSQL.url, PostgreSQL.user, PostgreSQL.pass);
     }
-
 
     @Override
     public void connect(String url, String user, String pass) {
