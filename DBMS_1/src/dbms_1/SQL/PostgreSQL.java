@@ -12,37 +12,30 @@ public class PostgreSQL implements BaseConnect {
     static String user = "postgres";
     static String pass = "123";
 
+
     public PostgreSQL(){
         connect(PostgreSQL.url, PostgreSQL.user, PostgreSQL.pass);
     }
 
+
     @Override
     public void connect(String url, String user, String pass) {
         try {
-
             con = DriverManager.getConnection(url, user, pass);
             System.out.println("Connection Successful!");
-
         } catch (Exception e) {
-
             System.out.println(e);
-
         }
     }
 
     @Override
     public ResultSet selectSQL(String sql) {
         try {
-
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-
         } catch (SQLException throwables) {
-
             throwables.printStackTrace();
-
         }
-
         return rs;
     }
 
