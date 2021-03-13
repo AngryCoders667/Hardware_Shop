@@ -23,7 +23,6 @@ public class MySQL implements BaseConnect {
     public void connect() {
         try {
             con = DriverManager.getConnection(url, user, pass);
-
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -432,7 +432,7 @@ public class Register extends javax.swing.JFrame {
             }
             catch (Exception e1)
             {
-             JOptionPane.showMessageDialog(null,e1.getMessage());
+             JOptionPane.showMessageDialog(null,"Already existing!");
             }
         }
         
