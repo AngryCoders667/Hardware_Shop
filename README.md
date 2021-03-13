@@ -23,4 +23,4 @@ For creation of bill, required options and details are filled in the following w
 
 Inventory Management module enabling updation of the inventory on receiving new stock as well as showing current stock details consists of following windows:
 
-<p align="center"><img src="/Screenshots/currentInventory_window.png" alt="Home Window" width="400" height="500"/>           <img src="/Screenshots/updateInventory_window.PNG" alt="Home Window" width="400" height="300"/></p>
+<p align="center"><img src="/Screenshots/currentInventory_window.png" alt="Home Window" width="400" height="500"/>           <img src="/Screenshots/updateInventory_window.png" alt="Home Window" width="400" height="300"/></p>
