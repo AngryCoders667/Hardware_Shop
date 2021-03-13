@@ -1,4 +1,7 @@
 package dbms_1;
+import dbms_1.SQL.BaseConnect;
+import dbms_1.SQL.PostgreSQL;
+
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
@@ -10,7 +13,9 @@ import javax.swing.*;
 
 
 public class Custlist extends javax.swing.JFrame {
-int userid;
+
+    int userid;
+    BaseConnect database = new PostgreSQL();
 
     public Custlist() {
         initComponents();
@@ -21,13 +26,14 @@ int userid;
         setLocationRelativeTo(null);
         userid=x;
         try{
-            Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
+
             String sql,id,name,add,phone1,phone2,mail,bill,bdate;
             sql = "select * from customer where shopid="+userid+";";
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery(sql);
+
+            ResultSet rs=database.selectSQL(sql);
+
             DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+
             int rows=model.getRowCount();
             if(rows>0){
                 for(int i=0;i<rows;i++)
@@ -180,13 +186,12 @@ int userid;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try{
-            Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             String sql,id,name,add,phone1,phone2,mail,bill,bdate;
             bdate=jFormattedTextField1.getText();
             sql = "select * from customer where shopid="+userid+" and billdate='"+bdate+"';";
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery(sql);
+
+            ResultSet rs=database.selectSQL(sql);
+
             DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
             int rows=model.getRowCount();
             if(rows>0){

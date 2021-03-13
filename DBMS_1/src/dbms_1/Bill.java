@@ -546,7 +546,7 @@ public class Bill extends javax.swing.JFrame {
                  Receipt r=new Receipt(q,name,add,contact1,contact2,email,billdate,userid);
                  this.hide();
                  r.show();
-                
+
             }
             else if(m==0)
             {
