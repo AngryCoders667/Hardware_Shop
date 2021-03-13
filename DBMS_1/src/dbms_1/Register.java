@@ -393,7 +393,7 @@ public class Register extends javax.swing.JFrame {
         {
             try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             int sid,q[]=new int[8];
             String pass,sql,sql1,sql2,name,add,email,contact1,contact2;
             sid=Integer.parseInt(jTextField1.getText()); 

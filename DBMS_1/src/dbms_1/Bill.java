@@ -400,7 +400,7 @@ public class Bill extends javax.swing.JFrame {
         else{ 
             try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             sql = "select * from hwstock where shopid="+userid+";";
             Statement st=con.createStatement();
             ResultSet rs=st.executeQuery(sql);

@@ -22,7 +22,7 @@ int userid;
         userid=x;
         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/google","root","YES");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/javaproject","root","root");
             String sql,id,name,add,phone1,phone2,mail,bill,bdate;
             sql = "select * from customer where shopid="+userid+";";
             Statement st=con.createStatement();
