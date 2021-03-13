@@ -12,6 +12,7 @@ import java.sql.*;
 public class ADD_items extends javax.swing.JFrame {
 int id;
     BaseConnect con = new MySQL();
+
     public ADD_items() {
         initComponents();
         setLocationRelativeTo(null);

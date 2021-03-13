@@ -79,8 +79,8 @@ public class Custlist extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Details Of Customers");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setText("History ");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

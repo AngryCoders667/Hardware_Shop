@@ -188,7 +188,7 @@ public class Login extends javax.swing.JFrame {
         try{
             Class.forName("java.sql.Driver");
             BaseConnect mysql1 = new MySQL();
-            mysql1.connect();
+
             con=mysql1.getConnection();
             //con = new PostgreSQL().getConnection();
             int sid;

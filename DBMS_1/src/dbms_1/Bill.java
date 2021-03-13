@@ -78,7 +78,11 @@ public class Bill extends javax.swing.JFrame {
         jButton1.setText("Generate Bill");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+                    jButton1ActionPerformed(evt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
 
@@ -394,168 +398,133 @@ public class Bill extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int q[]=new int[8],stkq[]=new int[8],m=1;
+        int q[] = new int[8], stkq[] = new int[8], m = 1;
         String sql;
-        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty() || jFormattedTextField1.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null,"Fill all Customer Details in Form");
-            }
-        else{ 
-            try{
-            sql = "select * from hwstock where shopid="+userid+";";
+        sql = "SELECT *FROM customer WHERE custphone1 = " + jTextField3.getText() + ";";
+        ResultSet checkphone = database.selectSQL(sql);
+        if (checkphone.isBeforeFirst()) {
+            JOptionPane.showMessageDialog(null, "Already exist phone number");
+        } else {
+            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField5.getText().isEmpty() || jFormattedTextField1.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Fill all Customer Details in Form");
+            } else {
+                try {
+                    sql = "select * from hwstock where shopid=" + userid + ";";
 
-            ResultSet rs=database.selectSQL(sql);
+                    ResultSet rs = database.selectSQL(sql);
 
-            rs.next();
-                for(int i=0;i<8;i++)
-                {
-                 stkq[i]=Integer.parseInt(rs.getString("quantity"));
-                 rs.next();
+                    rs.next();
+                    for (int i = 0; i < 8; i++) {
+                        stkq[i] = Integer.parseInt(rs.getString("quantity"));
+                        rs.next();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
                 }
-            }
-            catch(Exception e)
-            {
-             JOptionPane.showMessageDialog(null,e.getMessage());
-            }   
-            if(jCheckBox1.isSelected()==true)
-            {
-                if(stkq[0]<(int)jSpinner1.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[0]+" are present in stock");
-                    jSpinner1.setValue(0);
-                    m=0;
+                if (jCheckBox1.isSelected() == true) {
+                    if (stkq[0] < (int) jSpinner1.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[0] + " are present in stock");
+                        jSpinner1.setValue(0);
+                        m = 0;
+                    } else {
+                        q[0] = (int) jSpinner1.getValue();
+                        //m=1;
+                    }
                 }
-                else
-                {
-                    q[0]=(int)jSpinner1.getValue();
-                    //m=1;
+                if (jCheckBox2.isSelected() == true) {
+                    if (stkq[1] < (int) jSpinner2.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[1] + " are present in stock");
+                        jSpinner2.setValue(0);
+                        m = 0;
+                    } else {
+                        q[1] = (int) jSpinner2.getValue();
+                        //m=1;
+                    }
                 }
-            }
-            if(jCheckBox2.isSelected()==true)
-            {
-                if(stkq[1]<(int)jSpinner2.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[1]+" are present in stock");
-                    jSpinner2.setValue(0);
-                    m=0;
+                if (jCheckBox3.isSelected() == true) {
+                    if (stkq[2] < (int) jSpinner3.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[2] + " are present in stock");
+                        jSpinner3.setValue(0);
+                        m = 0;
+                    } else {
+                        q[2] = (int) jSpinner3.getValue();
+                        //m=1;
+                    }
                 }
-                else
-                {
-                    q[1]=(int)jSpinner2.getValue();
-                    //m=1;
+                if (jCheckBox4.isSelected() == true) {
+                    if (stkq[3] < (int) jSpinner4.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[3] + " are present in stock");
+                        jSpinner4.setValue(0);
+                        m = 0;
+                    } else {
+                        q[3] = (int) jSpinner4.getValue();
+                        //m=1;
+                    }
                 }
-            }
-            if(jCheckBox3.isSelected()==true)
-            {
-                if(stkq[2]<(int)jSpinner3.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[2]+" are present in stock");
-                    jSpinner3.setValue(0);
-                    m=0;
+                if (jCheckBox5.isSelected() == true) {
+                    if (stkq[4] < (int) jSpinner5.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[4] + " are present in stock");
+                        jSpinner5.setValue(0);
+                        m = 0;
+                    } else {
+                        q[4] = (int) jSpinner5.getValue();
+                        //m=1;
+                    }
                 }
-                else
-                {
-                    q[2]=(int)jSpinner3.getValue();
-                    //m=1;
+                if (jCheckBox6.isSelected() == true) {
+                    if (stkq[5] < (int) jSpinner6.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[5] + " are present in stock");
+                        jSpinner6.setValue(0);
+                        m = 0;
+                    } else {
+                        q[5] = (int) jSpinner6.getValue();
+                        //m=1;
+                    }
                 }
-            }
-            if(jCheckBox4.isSelected()==true)
-            {
-                if(stkq[3]<(int)jSpinner4.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[3]+" are present in stock");
-                    jSpinner4.setValue(0);
-                    m=0;
+                if (jCheckBox7.isSelected() == true) {
+                    if (stkq[6] < (int) jSpinner7.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[6] + " are present in stock");
+                        jSpinner7.setValue(0);
+                        m = 0;
+                    } else {
+                        q[6] = (int) jSpinner7.getValue();
+                        //m=1;
+                    }
                 }
-                else
-                {
-                    q[3]=(int)jSpinner4.getValue();
-                    //m=1;
+                if (jCheckBox8.isSelected() == true) {
+                    if (stkq[7] < (int) jSpinner8.getValue()) {
+                        JOptionPane.showMessageDialog(null, "Only " + stkq[7] + " are present in stock");
+                        jSpinner8.setValue(0);
+                        m = 0;
+                    } else {
+                        q[7] = (int) jSpinner8.getValue();
+                        //m=1;
+                    }
                 }
-            }
-            if(jCheckBox5.isSelected()==true)
-            {
-                if(stkq[4]<(int)jSpinner5.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[4]+" are present in stock");
-                    jSpinner5.setValue(0);
-                    m=0;
-                }
-                else
-                {
-                    q[4]=(int)jSpinner5.getValue();
-                    //m=1;
-                }
-            }
-            if(jCheckBox6.isSelected()==true)
-            {
-                if(stkq[5]<(int)jSpinner6.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[5]+" are present in stock");
-                    jSpinner6.setValue(0);
-                    m=0;
-                }
-                else
-                {
-                    q[5]=(int)jSpinner6.getValue();
-                    //m=1;
-                }
-            }
-            if(jCheckBox7.isSelected()==true)
-            {
-                if(stkq[6]<(int)jSpinner7.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[6]+" are present in stock");
-                    jSpinner7.setValue(0);
-                    m=0;
-                }
-                else
-                {
-                    q[6]=(int)jSpinner7.getValue();
-                    //m=1;
-                }
-            }
-            if(jCheckBox8.isSelected()==true)
-            {
-                if(stkq[7]<(int)jSpinner8.getValue())
-                {
-                    JOptionPane.showMessageDialog(null,"Only "+stkq[7]+" are present in stock");
-                    jSpinner8.setValue(0);
-                    m=0;
-                }
-                else
-                {
-                 q[7]=(int)jSpinner8.getValue();
-                 //m=1;
-                }
-            }
-            if(jCheckBox1.isSelected()==false && jCheckBox2.isSelected()==false && jCheckBox3.isSelected()==false && jCheckBox4.isSelected()==false && jCheckBox5.isSelected()==false && jCheckBox6.isSelected()==false && jCheckBox7.isSelected()==false && jCheckBox8.isSelected()==false)
-            {
-                 JOptionPane.showMessageDialog(null,"Select Items");
-            }
-            else if(m==1)
-            {
-                 String name,add,email,contact1,contact2,billdate,shopid;
-                 name=jTextField1.getText();
-                 add=jTextField2.getText();
-                 contact1=jTextField3.getText();
-                 contact2=jTextField4.getText();
-                 email=jTextField5.getText();
-                 billdate=jFormattedTextField1.getText();
-                 Receipt r=new Receipt(q,name,add,contact1,contact2,email,billdate,userid);
-                 this.hide();
-                 r.show();
+                if (jCheckBox1.isSelected() == false && jCheckBox2.isSelected() == false && jCheckBox3.isSelected() == false && jCheckBox4.isSelected() == false && jCheckBox5.isSelected() == false && jCheckBox6.isSelected() == false && jCheckBox7.isSelected() == false && jCheckBox8.isSelected() == false) {
+                    JOptionPane.showMessageDialog(null, "Select Items");
+                } else if (m == 1) {
 
-            }
-            else if(m==0)
-            {
-             //JOptionPane.showMessageDialog(null,"Recheck Bill form");
-            }
-        }  
-    }//GEN-LAST:event_jButton1ActionPerformed
+                    String name, add, email, contact1, contact2, billdate, shopid;
+                    name = jTextField1.getText();
+                    add = jTextField2.getText();
+                    contact1 = jTextField3.getText();
+                    contact2 = jTextField4.getText();
+                    email = jTextField5.getText();
+                    billdate = jFormattedTextField1.getText();
+                    Receipt r = new Receipt(q, name, add, contact1, contact2, email, billdate, userid);
+                    this.hide();
+                    r.show();
 
+                } else if (m == 0) {
+                    //JOptionPane.showMessageDialog(null,"Recheck Bill form");
+                }
+            }
+        }//GEN-LAST:event_jButton1ActionPerformed
+        checkphone.close();
+    }
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if(jCheckBox1.isSelected()==true)
